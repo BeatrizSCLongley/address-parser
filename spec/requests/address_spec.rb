@@ -13,4 +13,14 @@ describe 'Addresses API', type: :request do
     # returns books created
     expect(JSON.parse(response.body).size).to eq(2)
   end
+
+  it 'creates an address' do
+    expect {
+      # before running Post, there should be 0 instances & after 1
+      post '/api/v1/addresses', params: { address: { full_address: 'Julie-Wolfthorn-Straße 1, Berlin' } }
+    }.to change { Address.count }.from(0).to(1)
+
+    # returns status code 201'
+    expect(response).to have_http_status(:created)
+  end
 end
