@@ -1,24 +1,33 @@
-# README
+# Address API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## What it does
 
-Things you may want to cover:
+Address API that takes a full_address string and uses geocoding to parse and return the components of the address.
 
-* Ruby version
+Input:
+> Julie-Wolfthorn-Straße 1, Berlin
 
-* System dependencies
+Output:
+> [
+>  {
+>    "id": 1,
+>    "full_address": "Julie-Wolfthorn-Straße 1, Berlin",
+>    "street": "Einstein Kaffee, 1, Julie-Wolfthorn-Straße, Mitte, Berlin, 10115, Deutschland",
+>    "house_number": "1",
+>    "postcode": "10115",
+>    "city": "Berlin",
+>    "country": "Deutschland"
+>  }
+> ]
 
-* Configuration
+## Test the API
 
-* Database creation
+### Index & Show - to display data:
+curl -s http://localhost:3000/api/v1/addresses | jq
+curl -s http://localhost:3000/api/v1/addresses/1 | jq
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Create:
+curl -i -X POST                                                              \
+     -H 'Content-Type: application/json'                                     \
+     -d '{ "address": { "full_address": "Julie-Wolfthorn-Straße 1, Berlin" } }' \
+     http://localhost:3000/api/v1/addresses
