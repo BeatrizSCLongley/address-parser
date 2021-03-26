@@ -23,10 +23,13 @@ Output:
 ## Test the API
 
 ### Index & Show - to display data:
+
 curl -s http://localhost:3000/api/v1/addresses | jq
+
 curl -s http://localhost:3000/api/v1/addresses/1 | jq
 
 ### Create:
+
 curl -i -X POST                                                              \
      -H 'Content-Type: application/json'                                     \
      -d '{ "address": { "full_address": "Julie-Wolfthorn-Straße 1, Berlin" } }' \
