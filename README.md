@@ -35,6 +35,7 @@ Output:
 
 
 ## Test the API
+While running *rail s*
 
 ### Create:
 
