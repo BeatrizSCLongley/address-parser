@@ -15,9 +15,12 @@ describe 'Addresses API', type: :request do
   end
 
   it 'creates an address' do
+    # before running Post, there should be 0 instances & after 1
     expect {
-      # before running Post, there should be 0 instances & after 1
-      post '/api/v1/addresses', params: { address: { full_address: 'Julie-Wolfthorn-Straße 1, Berlin' } }
+      # version with basic geocoding:
+      # post '/api/v1/addresses', params: { address: { full_address: 'Julie-Wolfthorn-Straße 1, Berlin' } }
+      # version with google api:
+      post '/api/v1/addresses', params: { full_address: 'Julie-Wolfthorn-Straße 1, Berlin' }
     }.to change { Address.count }.from(0).to(1)
 
     # returns status code 201'
